@@ -1,0 +1,157 @@
+<html>
+    <head>
+        <title>MQ Stats</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div id = "navigation">
+            <p id = "navigation_item">
+                Alerts &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Dashboard &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                MQ Stats &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                MQED
+            </p>
+        </div>
+        <div id = "page_information">
+            <p id = "page_information_text">
+                Search for historical and live MQ statistics
+            </p>
+        </div>
+        <div id="search">
+            <p id = "search_information_text">
+                Object:
+            </p>
+            <input type="text" autocomplete="off" name="text" class="input" placeholder="e.g. BT.CL.TEST.01">
+            <p id = "search_information_text">
+                Queue Manager:
+            </p>
+            <input type="text" autocomplete="off" name="text" class="input" placeholder="e.g. BT.QM.EMBL10P1">
+            <p id = "search_information_text">
+                Hostname:
+            </p>
+            <input type="text" autocomplete="off" name="text" class="input" placeholder="e.g. blp02752007">
+            <p id = "search_information_text">
+                Location:
+            </p>
+            <input type="text" autocomplete="off" name="text" class="input" placeholder="e.g. Reigate">
+            <p id = "search_information_text">
+                Application:
+            </p>
+            <input type="text" autocomplete="off" name="text" class="input" placeholder="e.g. Flowmanage">
+            <p id = "search_information_text">
+                Environment:
+            </p>
+            <input type="text" autocomplete="off" name="text" class="input" placeholder="e.g. Production">
+        </div>
+        <div id = "main_content">
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+                google.charts.load("current", {packages:['corechart']});
+                google.charts.setOnLoadCallback(drawChart);
+                google.charts.setOnLoadCallback(drawChart2);
+                google.charts.setOnLoadCallback(drawChart3);
+
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                        ["Day", "Messages", { role: "style" } ],
+                        ["29th September", 8.94, "silver"],
+                        ["30th September", 10.49, "silver"],
+                        ["1st October", 19.30, "gold"],
+                        ["2nd October", 21.45, "gold"],
+                        ["3rd October", 21.45, "gold"],
+                        ["4th October", 21.45, "gold"],
+                        ["5th October", 21.45, "gold"],
+                        ["6th October", 21.45, "gold"]
+                    ]);
+
+                    var view = new google.visualization.DataView(data);
+                    view.setColumns([0, 1,
+                                    { calc: "stringify",
+                                        sourceColumn: 1,
+                                        type: "string",
+                                        role: "annotation" },
+                                    2]);
+
+                    var options = {
+                        title: "Total number of messages per day - All 64 MQ test servers",
+                        width: 800,
+                        height: 400,
+                        bar: {groupWidth: "95%"},
+                        legend: { position: "none" },
+                    };
+                    var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+                    chart.draw(view, options);
+                }
+
+                function drawChart2() {
+                    var data2 = google.visualization.arrayToDataTable([
+                        ["Day", "Messages", { role: "style" } ],
+                        ["29th September", 8.94, "silver"],
+                        ["30th September", 10.49, "silver"],
+                        ["1st October", 19.30, "gold"],
+                        ["2nd October", 21.45, "gold"],
+                        ["3rd October", 21.45, "gold"],
+                        ["4th October", 21.45, "gold"],
+                        ["5th October", 21.45, "gold"],
+                        ["6th October", 21.45, "gold"]
+                    ]);
+
+                    var view2 = new google.visualization.DataView(data2);
+                    view2.setColumns([0, 1,
+                                    { calc: "stringify",
+                                        sourceColumn: 1,
+                                        type: "string",
+                                        role: "annotation" },
+                                    2]);
+
+                    var options2 = {
+                        title: "Total number of messages per day - All 64 MQ test servers",
+                        width: 800,
+                        height: 400,
+                        bar: {groupWidth: "95%"},
+                        legend: { position: "none" },
+                    };
+                    var chart2 = new google.visualization.ColumnChart(document.getElementById("columnchart_values_2"));
+                    chart2.draw(view2, options2);
+                }
+
+                function drawChart3() {
+                    var data3 = google.visualization.arrayToDataTable([
+                        ["Day", "Messages", { role: "style" } ],
+                        ["29th September", 8.94, "silver"],
+                        ["30th September", 10.49, "silver"],
+                        ["1st October", 19.30, "gold"],
+                        ["2nd October", 21.45, "gold"],
+                        ["3rd October", 21.45, "gold"],
+                        ["4th October", 21.45, "gold"],
+                        ["5th October", 21.45, "gold"],
+                        ["6th October", 21.45, "gold"]
+                    ]);
+
+                    var view3 = new google.visualization.DataView(data3);
+                    view3.setColumns([0, 1,
+                                    { calc: "stringify",
+                                        sourceColumn: 1,
+                                        type: "string",
+                                        role: "annotation" },
+                                    2]);
+
+                    var options3 = {
+                        title: "Total number of messages per day - All 64 MQ test servers",
+                        width: 800,
+                        height: 400,
+                        bar: {groupWidth: "95%"},
+                        legend: { position: "none" },
+                    };
+                    var chart3 = new google.visualization.PieChart(document.getElementById("columnchart_values_3"));
+                    chart3.draw(view3, options3);
+                }
+            </script>
+            <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+            <br /><br /><br /><br /><br />
+            <div id="columnchart_values_2" style="width: 900px; height: 300px;"></div>
+            <br /><br /><br /><br /><br />
+            <div id="columnchart_values_3" style="width: 900px; height: 300px;"></div>
+        </div>
+    </body>
+</html>
