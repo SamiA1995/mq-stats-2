@@ -2,47 +2,58 @@
     <head>
         <title>MQ Stats</title>
         <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="input.css">
     </head>
     <body>
         <div id = "navigation">
-            <p id = "navigation_item">
-                Alerts &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Dashboard &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                MQ Stats &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                MQED
-            </p>
+            <li class = "navigation_item">Alerts</li>
+            <li class = "navigation_item">Dashboard</li>
+            <li class = "navigation_item">MQ Stats</li>
+            <li class = "navigation_item">MQED</li>
         </div>
+        
         <div id = "page_information">
-            <p id = "page_information_text">
-                Search for historical and live MQ statistics
-            </p>
+            <p id = "page_information_text">Search for historical and live MQ statistics</p>
         </div>
+
         <div id="search">
-            <p id = "search_information_text">
-                Object:
-            </p>
-            <input type="text" autocomplete="off" name="text" class="input" placeholder="e.g. BT.CL.TEST.01">
-            <p id = "search_information_text">
-                Queue Manager:
-            </p>
-            <input type="text" autocomplete="off" name="text" class="input" placeholder="e.g. BT.QM.EMBL10P1">
-            <p id = "search_information_text">
-                Hostname:
-            </p>
-            <input type="text" autocomplete="off" name="text" class="input" placeholder="e.g. blp02752007">
-            <p id = "search_information_text">
-                Location:
-            </p>
-            <input type="text" autocomplete="off" name="text" class="input" placeholder="e.g. Reigate">
-            <p id = "search_information_text">
-                Application:
-            </p>
-            <input type="text" autocomplete="off" name="text" class="input" placeholder="e.g. Flowmanage">
-            <p id = "search_information_text">
-                Environment:
-            </p>
-            <input type="text" autocomplete="off" name="text" class="input" placeholder="e.g. Production">
+            <div id = "column_1">
+                <div class="coolinput">
+                    <label for="input" class="text">Object name:</label>
+                    <input type="text" placeholder="e.g. BT.CL.TEST.01" name="input" class="input">
+                </div>
+                <div class="coolinput">
+                    <label for="input" class="text">Queue manager:</label>
+                    <input type="text" placeholder="e.g. BT.QM.EMBC03D1" name="input" class="input">
+                </div>
+            </div>
+            <div id = "column_2">
+                <div class="coolinput">
+                    <label for="input" class="text">Hostname:</label>
+                    <input type="text" placeholder="e.g. blp02752086" name="input" class="input">
+                </div>
+                <div class="coolinput">
+                    <label for="input" class="text">Location:</label>
+                    <input type="text" placeholder="e.g. Reigate" name="input" class="input">
+                </div>
+            </div>
+            <div id = "column_2">
+                <div class="coolinput">
+                    <label for="input" class="text">Application:</label></label>
+                    <input type="text" placeholder="e.g. Flowmanage" name="input" class="input">
+                </div>
+                <div class="coolinput">
+                    <label for="input" class="text">Environment:</label>
+                    <input type="text" placeholder="e.g. Production" name="input" class="input">
+                </div>
+            </div>
+            <div id = "column_2">
+                <button class="arc-btn-retro">
+                    Search
+                </button>
+            </div>
         </div>
+
         <div id = "main_content">
             <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
             <script type="text/javascript">
