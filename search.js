@@ -6,7 +6,17 @@ var alt_row = false;
 
 function getResults(e) {
     console.log(object_name.value);
-    displayResults(object_name.value);
+
+    $.getJSON( "http://localhost:8080/helloJson", { name: "Archie", age: "68" } )
+    .done(function( json ) {
+        console.log( "JSON Data: " + json.name );
+        console.log( "JSON Data: " + json.age );
+        displayResults(json.name);
+    })
+    .fail(function( jqxhr, textStatus, error ) {
+        var err = textStatus + ", " + error;
+        console.log( "Request Failed: " + err );
+    });
 }
 
 function displayResults(param) {
