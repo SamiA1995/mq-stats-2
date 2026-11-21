@@ -41,8 +41,8 @@ public class PostgresqlConnector {
 	
 	public static void exampleSelectQueries() throws SQLException {
 		ArrayList<String> messages = new ArrayList();
-		messages.add("SELECT * FROM queue WHERE name LIKE '%1'");
-		messages.add("SELECT * FROM queue WHERE name LIKE '%3'");
+		messages.add("SELECT * FROM object WHERE name LIKE '%1'");
+		messages.add("SELECT * FROM object WHERE name LIKE '%3'");
 		ArrayList<String> messages_result = runSelectQueries(messages);
 		for(int i = 0; i < messages_result.size(); i++) {
 			System.out.println(messages_result.get(i));

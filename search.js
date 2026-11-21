@@ -1,17 +1,16 @@
 var object_name = document.getElementById('object_name');
+var queue_manager_name = document.getElementById('queue_manager_name');
 var search_button = document.getElementById('search_button');
 
 var results_table = document.getElementById('results_table');
 var alt_row = false;
 
 function getResults(e) {
-    console.log(object_name.value);
-
-    $.getJSON( "http://localhost:8080/helloJson", { name: "Archie", age: "68" } )
+    $.getJSON( "http://localhost:8080/objectSearch", { object: object_name.value, queue_manager: queue_manager_name.value } )
     .done(function( json ) {
-        console.log( "JSON Data: " + json.name );
-        console.log( "JSON Data: " + json.age );
-        displayResults(json.name);
+        for(var i = 0; i < json.length; i++) {
+            displayResults(json[i].object, json[i].queue_manager);
+        }
     })
     .fail(function( jqxhr, textStatus, error ) {
         var err = textStatus + ", " + error;
@@ -19,16 +18,16 @@ function getResults(e) {
     });
 }
 
-function displayResults(param) {
+function displayResults(object, queue_manager) {
     var tr = document.createElement('tr');
 
     var td = document.createElement('td');
-    var td_text = document.createTextNode(param);
+    var td_text = document.createTextNode(object);
     td.appendChild(td_text);
     tr.appendChild(td);
 
     var td2 = document.createElement('td');
-    var td_text2 = document.createTextNode(param+2);
+    var td_text2 = document.createTextNode(queue_manager);
     td2.appendChild(td_text2);
     tr.appendChild(td2);
 
