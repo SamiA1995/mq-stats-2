@@ -13,28 +13,36 @@
         </div>
         
         <div id = "page_information">
-            <p id = "page_information_text">Search for historical and live MQ statistics</p>
+            <p id = "page_information_text">Search for MQ objects</p>
         </div>
 
         <div id="search">
             <div id = "column_1">
                 <div class="coolinput">
                     <label for="input" class="text">Object name:</label>
-                    <input type="text" id="object_name" placeholder="e.g. BT.CL.TEST.01" class="input">
+                    <input type="text" id="object" placeholder="e.g. BT.CL.TEST.01" class="input">
                 </div>
                 <div class="coolinput">
                     <label for="input" class="text">Queue manager:</label>
-                    <input type="text" id="queue_manager_name" placeholder="e.g. BT.QM.EMBC03D1" name="input" class="input">
+                    <input type="text" id="queue_manager" placeholder="e.g. BT.QM.EMBC03D1" name="input" class="input">
+                </div>
+                <div class="coolinput">
+                    <label for="input" class="text">Object type:</label>
+                    <input type="text" id="object_type" placeholder="e.g. QLOCAL" name="input" class="input">
                 </div>
             </div>
             <div id = "column_2">
                 <div class="coolinput">
                     <label for="input" class="text">Hostname:</label>
-                    <input type="text" placeholder="e.g. blp02752086" name="input" class="input">
+                    <input type="text" id="host" placeholder="e.g. blp02752086" name="input" class="input">
                 </div>
                 <div class="coolinput">
                     <label for="input" class="text">Location:</label>
-                    <input type="text" placeholder="e.g. Reigate" name="input" class="input">
+                    <input type="text" id="host_location" placeholder="e.g. Reigate" name="input" class="input">
+                </div>
+                <div class="coolinput">
+                    <label for="input" class="text">Platform:</label>
+                    <input type="text" id="platform" placeholder="e.g. EMB EC" name="input" class="input">
                 </div>
             </div>
             <div id = "column_2">
@@ -46,8 +54,6 @@
                     <label for="input" class="text">Environment:</label>
                     <input type="text" placeholder="e.g. Production" name="input" class="input">
                 </div>
-            </div>
-            <div id = "column_2">
                 <button class="arc-btn-retro" id="search_button">
                     Search
                 </button>
@@ -58,7 +64,10 @@
             <div id = "table_panel">
                 <table id = "results_table">
                     <th class = "name_column">Name</th>
-                    <th id = "border-top-right-radius">Queue manager</th>
+                    <th>Queue manager</th>
+                    <th>Host</th>
+                    <th>Location</th>
+                    <th id = "border-top-right-radius">Platform</th>
                 </table>
             </div>
             <!--<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
