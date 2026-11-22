@@ -8,6 +8,7 @@ var alt_row = false;
 function getResults(e) {
     $.getJSON( "http://localhost:8080/objectSearch", { object: object_name.value, queue_manager: queue_manager_name.value } )
     .done(function( json ) {
+        clearTable();
         for(var i = 0; i < json.length; i++) {
             displayResults(json[i].object, json[i].queue_manager);
         }
@@ -42,3 +43,12 @@ function displayResults(object, queue_manager) {
 search_button.addEventListener('click', function(e) {
     getResults(e);
 }, false);
+
+function clearTable() {
+    console.log(results_table.childElementCount);
+    var count = results_table.childElementCount;
+    for(var i = 0; i < count-1; i++) {
+        var table_row = results_table.firstChild.nextSibling.nextSibling;
+        results_table.removeChild(table_row);
+    }
+}
