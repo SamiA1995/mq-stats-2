@@ -9,17 +9,20 @@ public class ObjectSearch {
 		object_search_results = getHosts(object_search_results);
 		object_search_results = getLocations(object_search_results);
 		object_search_results = getPlatform(object_search_results);
+		object_search_results = getEnvironment(object_search_results);
+		object_search_results = getApplication(object_search_results);
+		object_search_results = getObjectType(object_search_results);
 		object_search_results = filterResults(object_search_results, object_search_params);
 		return JsonResult.createJsonResult(object_search_results);
 	}
 	
-	private static String[][] getQueueManager(String[] object_search_params) throws SQLException {
+	public static String[][] getQueueManager(String[] object_search_params) throws SQLException {
 		ArrayList<String> queries = new ArrayList<String>();
 		queries.add("SELECT queue_manager_id FROM object_queue_manager WHERE object_id = "
 				+ "(SELECT id from object WHERE name = '" + object_search_params[0] + "')");
 		
 		ArrayList<String> search_result = PostgresqlConnector.runSelectQueries(queries);
-		String[][] object_search_results = new String[search_result.size()][5];
+		String[][] object_search_results = new String[search_result.size()][9];
 		for(int i = 0; i < search_result.size(); i++) {
 			object_search_results[i][0] = object_search_params[0];
 			object_search_results[i][1] = search_result.get(i);
@@ -108,6 +111,92 @@ public class ObjectSearch {
 		search_result = PostgresqlConnector.runSelectQueries(queries);
 		for(int i = 0; i < search_result.size(); i++) {
 			object_search_results[i][4] = search_result.get(i);
+		}
+		
+		return object_search_results;
+	}
+	
+	public static String[][] getEnvironment(String[][] object_search_results) throws SQLException {
+		ArrayList<String> queries = new ArrayList();
+		for(int i = 0; i < object_search_results.length; i++) {
+			queries.add("SELECT environment_id FROM host_environment WHERE host_id = "
+					+ "(SELECT id from host WHERE name = '" + object_search_results[i][2] + "')");
+		}
+		
+		ArrayList<String> search_result = PostgresqlConnector.runSelectQueries(queries);
+		for(int i = 0; i < search_result.size(); i++) {
+			object_search_results[i][5] = search_result.get(i);
+		}
+		
+		queries.clear();
+		for(int i = 0; i < object_search_results.length; i++ ) {
+			queries.add("SELECT name FROM environment WHERE id = " + object_search_results[i][5]);
+		}
+		
+		search_result = PostgresqlConnector.runSelectQueries(queries);
+		for(int i = 0; i < search_result.size(); i++) {
+			object_search_results[i][5] = search_result.get(i);
+		}
+		
+		return object_search_results;
+	}
+	
+	public static String[][] getApplication(String[][] object_search_results) throws SQLException {
+		ArrayList<String> queries = new ArrayList();
+		for(int i = 0; i < object_search_results.length; i++) {
+			queries.add("SELECT application_id FROM object_application WHERE object_id = "
+					+ "(SELECT id from object WHERE name = '" + object_search_results[i][0] + "')");
+		}
+		
+		ArrayList<String> search_result = PostgresqlConnector.runSelectQueries(queries);
+		for(int i = 0; i < search_result.size(); i++) {
+			object_search_results[i][6] = search_result.get(i);
+		}
+		
+		queries.clear();
+		for(int i = 0; i < object_search_results.length; i++ ) {
+			queries.add("SELECT name FROM application WHERE id = " + object_search_results[i][6]);
+		}
+		
+		search_result = PostgresqlConnector.runSelectQueries(queries);
+		for(int i = 0; i < search_result.size(); i++) {
+			object_search_results[i][6] = search_result.get(i);
+		}
+		
+		queries.clear();
+		for(int i = 0; i < object_search_results.length; i++ ) {
+			queries.add("SELECT app_id FROM application WHERE name = '" + object_search_results[i][6] + "'");
+		}
+		
+		search_result = PostgresqlConnector.runSelectQueries(queries);
+		for(int i = 0; i < search_result.size(); i++) {
+			object_search_results[i][7] = search_result.get(i);
+		}
+		
+		return object_search_results;
+	}
+	
+	public static String[][] getObjectType(String[][] object_search_results) throws SQLException {
+		ArrayList<String> queries = new ArrayList();
+		queries.clear();
+		for(int i = 0; i < object_search_results.length; i++) {
+			queries.add("SELECT object_type_id FROM object_object_type WHERE object_id = "
+					+ "(SELECT id from object WHERE name = '" + object_search_results[i][0] + "')");
+		}
+				
+		ArrayList<String> search_result = PostgresqlConnector.runSelectQueries(queries);
+		for(int i = 0; i < search_result.size(); i++) {
+			object_search_results[i][8] = search_result.get(i);
+		}
+				
+		queries.clear();
+		for(int i = 0; i < object_search_results.length; i++ ) {
+			queries.add("SELECT name FROM object_type WHERE id = " + object_search_results[i][8]);
+		}
+				
+		search_result = PostgresqlConnector.runSelectQueries(queries);
+		for(int i = 0; i < search_result.size(); i++) {
+			object_search_results[i][8] = search_result.get(i);
 		}
 		
 		return object_search_results;

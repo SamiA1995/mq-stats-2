@@ -21,13 +21,21 @@ public class DemoApplication {
 							@RequestParam(value = "queue_manager", defaultValue = "") String queue_manager,
 							@RequestParam(value = "host", defaultValue = "") String host,
 							@RequestParam(value = "host_location", defaultValue = "") String host_location,
-							@RequestParam(value = "platform", defaultValue = "") String platform) {
-    	String[] object_search_params = new String[5];
+							@RequestParam(value = "platform", defaultValue = "") String platform,
+							@RequestParam(value = "environment", defaultValue = "") String environment,
+							@RequestParam(value = "application", defaultValue = "") String application,
+							@RequestParam(value = "app_id", defaultValue = "") String app_id,
+							@RequestParam(value = "object_type", defaultValue = "") String object_type) {
+    	String[] object_search_params = new String[9];
     	object_search_params[0] = object;
     	object_search_params[1] = queue_manager;
     	object_search_params[2] = host;
     	object_search_params[3] = host_location;
     	object_search_params[4] = platform;
+    	object_search_params[5] = environment;
+    	object_search_params[6] = application;
+    	object_search_params[7] = app_id;
+    	object_search_params[8] = object_type;
     	String result = "";
 		try {
 			if(!object.equals("")) {
@@ -40,6 +48,14 @@ public class DemoApplication {
 				result = LocationSearch.locationSearch(object_search_params);
 			} else if(!platform.equals("")) {
 				result = PlatformSearch.platformSearch(object_search_params);
+			} else if(!environment.equals("")) {
+				result = EnvironmentSearch.environmentSearch(object_search_params);
+			} else if(!application.equals("")) {
+				result = ApplicationSearch.applicationSearch(object_search_params);
+			} else if(!app_id.equals("")) {
+				result = ApplicationSearch.appIdSearch(object_search_params);
+			} else if(!object_type.equals("")) {
+				result = ObjectTypeSearch.objectTypeSearch(object_search_params);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

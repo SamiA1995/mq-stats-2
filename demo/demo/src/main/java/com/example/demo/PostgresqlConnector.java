@@ -22,6 +22,7 @@ public class PostgresqlConnector {
 			rs.close();
 		}
 		st.close();
+		conn.close();
 		return result_list;
 	}
 	
@@ -37,6 +38,7 @@ public class PostgresqlConnector {
 			st.execute(queries.get(i));
 		}
 		st.close();
+		conn.close();
 	}
 	
 	public static void exampleSelectQueries() throws SQLException {

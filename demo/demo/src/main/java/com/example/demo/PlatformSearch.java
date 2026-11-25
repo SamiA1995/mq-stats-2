@@ -11,7 +11,7 @@ public class PlatformSearch {
 			object_search_params[3] = locations[i];
 			String next_set_of_results = LocationSearch.locationSearch(object_search_params);
 			if(!next_set_of_results.equals("[]")) {
-				if(i > 0) {
+				if(i > 0 && result.length() > 0) {
 					result = result.substring(0, result.length()-1);
 					result += ",";
 					next_set_of_results = next_set_of_results.substring(1, next_set_of_results.length());
@@ -19,13 +19,8 @@ public class PlatformSearch {
 				result += next_set_of_results;
 			}
 		}
-		if(result.length() == 0) {
-			result = "[]";
-		} else {
-			result = result.substring(0, result.length()-1);
-			result += "]";
-		}
-		return result;
+
+		return JsonResult.cleanJson(result);
 	}
 	
 	private static String[] getLocations(String[] object_search_params) throws SQLException {

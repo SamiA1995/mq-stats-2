@@ -9,6 +9,9 @@ public class QueueManagerSearch {
 		object_search_results = ObjectSearch.getHosts(object_search_results);
 		object_search_results = ObjectSearch.getLocations(object_search_results);
 		object_search_results = ObjectSearch.getPlatform(object_search_results);
+		object_search_results = ObjectSearch.getEnvironment(object_search_results);
+		object_search_results = ObjectSearch.getApplication(object_search_results);
+		object_search_results = ObjectSearch.getObjectType(object_search_results);
 		object_search_results = ObjectSearch.filterResults(object_search_results, object_search_params);
 		return JsonResult.createJsonResult(object_search_results);
 	}
@@ -19,7 +22,7 @@ public class QueueManagerSearch {
 				+ "(SELECT id from queue_manager WHERE name = '" + object_search_params[1] + "')");
 		
 		ArrayList<String> search_result = PostgresqlConnector.runSelectQueries(queries);
-		String[][] object_search_results = new String[search_result.size()][5];
+		String[][] object_search_results = new String[search_result.size()][9];
 		for(int i = 0; i < search_result.size(); i++) {
 			object_search_results[i][0] = search_result.get(i);
 			object_search_results[i][1] = object_search_params[1];

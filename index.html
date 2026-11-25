@@ -48,12 +48,18 @@
             <div id = "column_2">
                 <div class="coolinput">
                     <label for="input" class="text">Application:</label></label>
-                    <input type="text" placeholder="e.g. Flowmanage" name="input" class="input">
+                    <input type="text" id="application" placeholder="e.g. Flowmanage" name="input" class="input">
+                </div>
+                <div class="coolinput">
+                    <label for="input" class="text">APP ID:</label>
+                    <input type="text" id="app_id" placeholder="e.g. APP02752" name="input" class="input">
                 </div>
                 <div class="coolinput">
                     <label for="input" class="text">Environment:</label>
-                    <input type="text" placeholder="e.g. Production" name="input" class="input">
+                    <input type="text" id="environment" placeholder="e.g. Production" name="input" class="input">
                 </div>
+            </div>
+            <div id = "column_2">
                 <button class="arc-btn-retro" id="search_button">
                     Search
                 </button>
@@ -63,11 +69,15 @@
         <div id = "main_content">
             <div id = "table_panel">
                 <table id = "results_table">
+                    <th class = "first_column">Object Type</th>
                     <th class = "name_column">Name</th>
                     <th>Queue manager</th>
                     <th>Host</th>
                     <th>Location</th>
-                    <th id = "border-top-right-radius">Platform</th>
+                    <th>Platform</th>
+                    <th>Environment</th>
+                    <th>Application</th>
+                    <th id = "border-top-right-radius">APP ID</th>
                 </table>
             </div>
             <!--<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
